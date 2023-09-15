@@ -28,14 +28,14 @@ namespace honey_inventory_practice.Controllers
             - (GetAll) is for displaying all the records
         */
         [HttpGet("GetAll")]
-        public async Task<ActionResult<ServiceResponse<List<HoneyInventory>>>> Get()
+        public async Task<ActionResult<ServiceResponse<List<GetHoneyInventoryDto>>>> Get()
         {
             return Ok(await _honeyInventoryService.GetAllHoneyInventory());
         }
 
         //Get a one item from (GetAll)
         [HttpGet("{id}")]
-        public async Task<ActionResult<ServiceResponse<HoneyInventory>>> GetSingle(int id)// LINQ is used the find the ids.
+        public async Task<ActionResult<ServiceResponse<GetHoneyInventoryDto>>> GetSingle(int id)// LINQ is used the find the ids.
         {
             /*
             - Lumda expressions are used here.= return Ok(honeyInventories.FirstOrDefault(hi => hi.Id == id));
@@ -56,9 +56,34 @@ namespace honey_inventory_practice.Controllers
 
         */
         [HttpPost]
-        public async Task<ActionResult<ServiceResponse<List<HoneyInventory>>>> AddHoneyInventory(HoneyInventory newHoneyInventory)
+        public async Task<ActionResult<ServiceResponse<List<GetHoneyInventoryDto>>>> AddHoneyInventory(AddHoneyInventoryDto newHoneyInventory)
         {
             return Ok(await _honeyInventoryService.AddHoneyInventory(newHoneyInventory));
+        }
+
+        //
+        [HttpPut]
+        public async Task<ActionResult<ServiceResponse<List<GetHoneyInventoryDto>>>> UpdateHoneyInventory(UpdateHoneyInventoryDto updatedHoneyInventory)
+        {
+            var response = await _honeyInventoryService.UpdateHoneyInventory(updatedHoneyInventory);
+            if (response.Data is null)
+            {
+                return NotFound(response);
+            }
+            return Ok(response);
+        }
+
+
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<ServiceResponse<GetHoneyInventoryDto>>> DeleteHoneyInventory(int id)// LINQ is used the find the ids.
+        {
+            var response = await _honeyInventoryService.DeleteHoneyInventory(id);
+            if (response.Data is null)
+            {
+                return NotFound(response);
+            }
+            return Ok(response);
         }
     }
 }

@@ -1,3 +1,4 @@
+global using Microsoft.EntityFrameworkCore;
 global using AutoMapper;
 global using honey_inventory_practice.Dtos.InventoryHoney;
 global using honey_inventory_practice.Services.HoneyInventoryService;

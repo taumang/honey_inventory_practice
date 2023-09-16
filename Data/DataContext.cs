@@ -14,3 +14,6 @@ namespace honey_inventory_practice.Data
         public DbSet<HoneyInventory> HoneyInventories => Set<HoneyInventory>();
     }
 }
+
+// Migrations implemented after EF Core is installed 
+// - dotnet ef migrations add InitialCreate

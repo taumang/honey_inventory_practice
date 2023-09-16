@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using honey_inventory_practice.Data;
 
 namespace honey_inventory_practice.Services.HoneyInventoryService
 {
@@ -18,9 +19,12 @@ namespace honey_inventory_practice.Services.HoneyInventoryService
 
         //constructor of the automapper
         private readonly IMapper _mapper;
-        public HoneyInventoryService(IMapper mapper)
+        private readonly DataContext _context;
+        public HoneyInventoryService(IMapper mapper,DataContext context )
         {
+            _context = context;
             _mapper = mapper;
+
         }
 
         public async Task<ServiceResponse<List<GetHoneyInventoryDto>>> AddHoneyInventory(AddHoneyInventoryDto newHoneyInventory)
@@ -59,7 +63,8 @@ namespace honey_inventory_practice.Services.HoneyInventoryService
         public async Task<ServiceResponse<List<GetHoneyInventoryDto>>> GetAllHoneyInventory()
         {
             var serviceResponse = new ServiceResponse<List<GetHoneyInventoryDto>>();
-            serviceResponse.Data = honeyInventories.Select(hi=>_mapper.Map<GetHoneyInventoryDto>(hi)).ToList();
+            var dbHoneyInventories = await _context.HoneyInventories.ToListAsync();
+            serviceResponse.Data = dbHoneyInventories.Select(hi=>_mapper.Map<GetHoneyInventoryDto>(hi)).ToList();
             return serviceResponse;
         }
 

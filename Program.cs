@@ -3,11 +3,19 @@ global using AutoMapper;
 global using honey_inventory_practice.Dtos.InventoryHoney;
 global using honey_inventory_practice.Services.HoneyInventoryService;
 global using honey_inventory_practice.Models;
-global using System.Text.Json.Serialization;// for [JsonConverter(typeof(JsonStringEnumConverter))] in EnumClass files
+global using System.Text.Json.Serialization;
+using honey_inventory_practice.Data;// for [JsonConverter(typeof(JsonStringEnumConverter))] in EnumClass files
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+
+builder.Services.AddDbContext<DataContext>(
+    options => 
+        options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
+);
+
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

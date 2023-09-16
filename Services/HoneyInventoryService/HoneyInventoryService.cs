@@ -71,8 +71,8 @@ namespace honey_inventory_practice.Services.HoneyInventoryService
         public async Task<ServiceResponse<GetHoneyInventoryDto>> GetHoneyInventoryId(int id)
         {
             var serviceResponse = new ServiceResponse<GetHoneyInventoryDto>();
-            var honeyInventory = honeyInventories.FirstOrDefault(hi => hi.Id == id);
-            serviceResponse.Data = _mapper.Map<GetHoneyInventoryDto>(honeyInventory);//AutoMapper Implemented in the Get ID
+            var dbHoneyInventory = await _context.HoneyInventories.FirstOrDefaultAsync(hi => hi.Id == id);
+            serviceResponse.Data = _mapper.Map<GetHoneyInventoryDto>(dbHoneyInventory);//AutoMapper Implemented in the Get ID
             return serviceResponse;
         }
 

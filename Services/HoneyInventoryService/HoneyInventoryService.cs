@@ -87,10 +87,7 @@ namespace honey_inventory_practice.Services.HoneyInventoryService
             if(honeyInventory is null)
                     throw new Exception($"Honey Product with Id '{updatedHoneyInventory.Id}' is not found in the list, sorry!");
 
-            /*
-               1- _mapper.Map<HoneyInventory>(updatedHoneyInventory);
-               2- _mapper.Map(UpdatedHoneyInventory,honeyInventory); (another CreateMap will need to be added in the project)
-            */
+
             
 
             honeyInventory.UnitNumber = updatedHoneyInventory.UnitNumber;
@@ -109,7 +106,7 @@ namespace honey_inventory_practice.Services.HoneyInventoryService
                 serviceResponse.Message = ex.Message;
             }
 
-// The code snippet defines a class called HoneyInventoryService that implements an interface called IHoneyInventoryService. It contains methods for adding, getting, and updating honey inventory items. The methods use AutoMapper to map between different data transfer objects (DTOs) and
+
             return serviceResponse;
         }
     }

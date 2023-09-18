@@ -15,5 +15,3 @@ namespace honey_inventory_practice.Data
     }
 }
 
-// Migrations implemented after EF Core is installed 
-// - dotnet ef migrations add InitialCreate

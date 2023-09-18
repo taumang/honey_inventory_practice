@@ -76,7 +76,7 @@ namespace honey_inventory_practice.Controllers
 
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult<ServiceResponse<GetHoneyInventoryDto>>> DeleteHoneyInventory(int id)// LINQ is used the find the ids.
+        public async Task<ActionResult<ServiceResponse<GetHoneyInventoryDto>>> DeleteHoneyInventory(int id)
         {
             var response = await _honeyInventoryService.DeleteHoneyInventory(id);
             if (response.Data is null)

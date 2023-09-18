@@ -4,7 +4,7 @@ global using honey_inventory_practice.Dtos.InventoryHoney;
 global using honey_inventory_practice.Services.HoneyInventoryService;
 global using honey_inventory_practice.Models;
 global using System.Text.Json.Serialization;
-using honey_inventory_practice.Data;// for [JsonConverter(typeof(JsonStringEnumConverter))] in EnumClass files
+using honey_inventory_practice.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
